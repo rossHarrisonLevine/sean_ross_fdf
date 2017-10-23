@@ -1,6 +1,7 @@
 #include "fdf.h"
 #include "./libft/libft.h"
 #include <stdio.h>
+
 float ft_fl_abs(float num)
 {
 	num *= ((num > 0) - (num < 0));
@@ -29,8 +30,50 @@ void	positivize(t_env *win, int flag)
 	}
 }
 
-void	initbres(t_bresen *bres, t_env *win)
+static void	initbres_help(t_bresen *bres, t_env *win)
 {
+	if (win->m <= 1 && win->m >= -1)
+	{
+		if (win->x2 < win->x1)
+		{
+			positivize(win, 0);
+			bres->y = win->y2;
+			bres->x = win->x1;
+		}
+		bres->flip = 0;
+	}
+	else
+	{
+		win->m = win->run / win->rise;
+		if (win->y2 < win->y1)
+		{
+			positivize(win, 1);
+			bres->x = win->x2;
+			bres->y = win->y1;
+		}
+		bres->flip = 1;
+	}
+}
+
+static void	flip(t_env *win)
+{
+	int tmp;
+
+	tmp = win->y1;
+	win->y1 = win->y2;
+	win->y2 = tmp;
+	tmp = win->x1;
+	win->x1 = win->x2;
+	win->x2 = tmp;
+}
+
+t_bresen	*initbres(t_env *win)
+{
+	t_bresen	*bres;
+
+	bres = (t_bresen*)malloc(sizeof(t_bresen));
+	if (win->y2 < win->y1)
+		flip(win);
 	bres->threshold = .5;
 	bres->thresholdinc = 1;
 	bres->offset = 0;
@@ -39,72 +82,49 @@ void	initbres(t_bresen *bres, t_env *win)
 	win->run = win->x2 - win->x1;
 	bres->y = win->y1;
 	bres->x = win->x1;
-	if (win->run == 0)
+	if (win->run == 0 && (bres->flip = 2))
+		return bres;
+	win->m = win->rise / win->run;
+	bres->adjust = win->m > 0 ? 1 : -1;
+	initbres_help(bres, win);
+	return bres;
+}
+
+static void	drawline_h0(t_env *win, t_bresen *bres)
+{
+	while (bres->x < win->x2 + 1)
 	{
-		bres->flip = 2;
-		return ;
+		drawpoint(win, bres);
+		bres->offset += win->m;
+		if (bres->offset >= bres->threshold && (bres->y += bres->adjust))
+			bres->threshold += bres->thresholdinc;
+		bres->x++;
 	}
-		win->m = win->rise / win->run;
-		bres->adjust = win->m > 0 ? 1 : -1;
-		if (win->m <= 1 && win->m >= -1)
-			{
-				if (win->x2 < win->x1)
-				{
-					positivize(win, 0);
-					bres->y = win->y2;
-					bres->x = win->x1;
-				}
-				bres->flip = 0;
-			}
-		else
-			{
-				win->m = win->run / win->rise;
-				if (win->y2 < win->y1)
-				{
-					positivize(win, 1);
-					bres->x = win->x2;
-					bres->y = win->y1;
-				}
-				bres->flip = 1;
-			}
+}
+
+static void	drawline_h1(t_env *win, t_bresen *bres)
+{
+	while (bres->y < win->y2 + 1)
+	{
+		drawpoint(win, bres);
+		bres->offset += win->m;
+		if (bres->offset >= bres->threshold && (bres->x += bres->adjust))
+			bres->threshold += bres->thresholdinc;
+	bres->y++;
+	}
 }
 
 void	drawline(t_env *win)
 {
-	t_bresen	*bres;
+	t_bresen *bres;
 
-	bres = (t_bresen*)malloc(sizeof(t_bresen));
-	initbres(bres, win);
+	bres = initbres(win);
 	win->m = ft_fl_abs(win->m);
 	if (bres->flip == 0)
-	{
-		while (bres->x < win->x2 + 1)
-		{
-			drawpoint(win, bres);
-			bres->offset += win->m;
-			if (bres->offset >= bres->threshold)
-			{
-				bres->y += bres->adjust;
-				bres->threshold += bres->thresholdinc;
-			}
-		bres->x ++;
-		}
-	}
-	if (bres->flip == 1)
-	{
-		while (bres->y < win->y2 + 1)
-		{
-			drawpoint(win, bres);
-			bres->offset += win->m;
-			if (bres->offset >= bres->threshold)
-			{
-				bres->x += bres->adjust;
-				bres->threshold += bres->thresholdinc;
-			}
-		bres->y ++;
-		}
-	}
-	if (bres->flip == 2)
+		drawline_h0(win, bres);
+	else if (bres->flip == 1)
+		drawline_h1(win, bres);
+	else if (bres->flip == 2)
 	{
 		while (bres->y < win->y2 + 1)
 		{
@@ -113,6 +133,7 @@ void	drawline(t_env *win)
 		}
 	}
 }
+
 int main(void)
 {
 	t_env	*win;
@@ -123,10 +144,10 @@ int main(void)
 	win->w = 500;
 	win->win = mlx_new_window(win->mlx, win->w, win->h, win->tit);
 
-	win->x1 = 100;
-	win->x2 = 100;
-	win->y1 = 100;
-	win->y2 = 2000;
+	win->x1 = 20;
+	win->x2 = 20;
+	win->y1 = 200;
+	win->y2 = 300;
 
 	drawline(win);
 
