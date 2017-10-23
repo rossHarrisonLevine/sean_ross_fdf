@@ -1,0 +1,39 @@
+gap:
+first you need to figure out how big of a square or gap between points in your map is.
+so take a number like 600,700,800 and divide by your big value. if my map is a 15w by 10h map, i would take 700/15.
+ in a map of 600 pixels across, each point1 to point 2 would be 46 pixels wide and 46 pixels high. a 46 pixel by 46 pixel square.
+
+m, rise, run: theese are used for your m = rise/run. m = slope basically.
+
+max and maxside: max: as a bonus i use my tile to figure out the size of my map needed to make a proper window to fill everything. play around with the numbers.
+i wanted a rectangular window so i just take my max and -300 from it.
+
+cart: ft_makecartesian will take in your t_map to use thoose numbers to set up your cartesian coordinate points array, a 2-d array of t_points.
+what we want to be storing are pixel coordinates of x and y. the raw z value and then we [scale] the z value/z value multiplied by some number
+like 5 or 20 because the normal z value is too low to show a good perspective usually.
+find the midx = your maps width/2. midy = maps height/2.
+w = 15, h = 10
+
+j is your moving x coordinate
+i is your moving y coordinate
+((fdf->j - m->midx) * fdf->gap);
+((fdf->i - m->midy) * fdf->gap);
+use this formula to get pixel coordinates where the midpoint is (0,0). your x=0,y=0 will start in negative pixels.
+now if your able to record the midpoint of your grid at 0,0 if you move/add [translation] equal to the middle of ur map,
+ you are moving that 0,0 to the middle of the map. now you are centered everytime. tadah! motha fucka.
+middle of ur map = half your total mapwidth x half your total mapheight.
+
+
+Dimension = 1490.000000 x 1190.000000
+pixel gap = 46
+x/width = 15, y/height = 10
+midx = 7, midy = 5
+(0,0) = (-230.000000, -322.000000)
+(0,1) = (-230.000000, -276.000000)
+(1,0) = (-184.000000, -322.000000)
+(5,7) = (0.000000, 0.000000)
+(9,14) = (184.000000, 322.000000)
+
+(*fdf)->mlx = mlx_init();
+(*fdf)->win = mlx_new_window((*fdf)->mlx, (*fdf)->max, (*fdf)->maxside, "FDF");
+keep your mlx init and mlx new window so you can redraw it and call it later.

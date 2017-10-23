@@ -1,0 +1,3 @@
+NAME = fdf
+
+all : $(NAME)
