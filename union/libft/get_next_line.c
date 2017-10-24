@@ -3,77 +3,91 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rlevine <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: sjones <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/07/03 19:38:24 by rlevine           #+#    #+#             */
-/*   Updated: 2017/08/29 16:20:10 by rlevine          ###   ########.fr       */
+/*   Created: 2017/01/23 13:24:41 by sjones            #+#    #+#             */
+/*   Updated: 2017/02/20 17:17:54 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-t_list		*check_fd(t_list **used, int fd)
+t_stor	**getinit(t_stor **get, int fd)
 {
-	t_list			*tmp;
-
-	tmp = *used;
-	while (tmp)
-	{
-		if ((size_t)fd == tmp->content_size)
-			return (tmp);
-		tmp = tmp->next;
-	}
-	tmp = ft_lstnew("", 1);
-	NULL_GUARD(tmp);
-	tmp->content_size = (size_t)fd;
-	ft_lstadd(used, tmp);
-	tmp = *used;
-	return (tmp);
+	if (!get)
+		get = (t_stor**)ft_memalloc((sizeof(t_stor*) * MAX_FD));
+	get[fd] = (t_stor*)ft_memalloc(sizeof(t_stor));
+	get[fd]->rl = 0;
+	get[fd]->lo = 0;
+	get[fd]->t = 0;
+	return (get);
 }
 
-int			snip(t_list *cur, char **buf)
+int		putline(t_stor *get, char *s, char **line)
 {
-	int				ret;
-	char			*tmp;
-
-	while (ft_strchr(*buf, '\n') == NULL && \
-				(ret = read(cur->content_size, *buf, BUFF_SIZE)) > 0)
-	{
-		tmp = cur->content;
-		cur->content = ft_strjoin(tmp, *buf);
-		NULL_CHECK(cur->content);
-		ft_strdel(&tmp);
-		ft_strclr(*buf);
-	}
-	ft_strdel(buf);
-	if (ret == -1)
+	if (!get || !s || !line)
 		return (-1);
-	return (1);
-}
-
-int			get_next_line(const int fd, char **line)
-{
-	static t_list	*used;
-	char			*buf;
-	t_list			*cur;
-	char			*tmp;
-
-	if (!line || fd < 0 || !(buf = ft_strnew(BUFF_SIZE)) || BUFF_SIZE < 0 \
-			|| !(cur = check_fd(&used, fd)) || snip(cur, &buf) == -1)
-		return (-1);
-	if (!cur->content)
-		return (0);
-	if ((buf = ft_strchr((char*)cur->content, '\n')) != NULL)
+	get->t = s;
+	if (*(get->t) && (ft_strchr(get->t, '\n') != NULL))
 	{
-		*line = ft_strsub(cur->content, 0, buf - (char*)cur->content);
-		NULL_CHECK(*line);
-		tmp = cur->content;
-		cur->content = ft_strdup(buf + 1);
-		NULL_CHECK(cur->content);
-		ft_strdel(&tmp);
+		*line = ft_strndup(get->t, (ft_strchr(get->t, '\n') - s));
+		get->lo = ft_strdup(ft_strchr(get->t, '\n') + 1);
+		if (ft_strcmp(get->t, get->buff) != 0)
+			free(get->t);
 		return (1);
 	}
-	*line = ft_strdup(cur->content);
-	cur->content = NULL;
-	return (ft_strlen(*line) > 0 ? 1 : 0);
+	if (*(get->t) && (get->rl < BUFF_SIZE))
+	{
+		*line = ft_strdup(get->t);
+		get->lo = NULL;
+		if (ft_strcmp(get->t, get->buff) != 0)
+			free(get->t);
+		return (1);
+	}
+	return (0);
+}
+
+void	buff_join(t_stor *get)
+{
+	get->t = get->lo;
+	get->lo = ft_strjoin(get->t, get->buff);
+	if (*get->t)
+		free(get->t);
+}
+
+void	helper(t_stor *get)
+{
+	if (!(get->lo))
+		get->lo = ft_strdup(get->buff);
+	else
+		buff_join(get);
+}
+
+int		get_next_line(int fd, char **line)
+{
+	static t_stor	**get;
+
+	if (fd < 0 || !line || fd > MAX_FD)
+		return (-1);
+	if (!get || !get[fd])
+		get = getinit(get, fd);
+	if (putline(get[fd], get[fd]->lo, line) == 1)
+		return (1);
+	while ((get[fd]->rl = read(fd, get[fd]->buff, BUFF_SIZE)) || get[fd]->lo)
+	{
+		if ((int)get[fd]->rl == -1)
+			return (-1);
+		get[fd]->buff[get[fd]->rl] = '\0';
+		if (ft_strchr(get[fd]->buff, '\n') || get[fd]->rl < BUFF_SIZE)
+		{
+			if (get[fd]->lo)
+			{
+				buff_join(get[fd]);
+				return (putline(get[fd], get[fd]->lo, line));
+			}
+			return (putline(get[fd], get[fd]->buff, line));
+		}
+		helper(get[fd]);
+	}
+	return (0);
 }

@@ -16,8 +16,8 @@ typedef struct		s_point
 	int				y;
 	int				z;
 	long int		color;
-	s_point			*right;
-	s_point			*down;
+	struct s_point	*right;
+	struct s_point	*down;
 }					t_point;
 
 typedef struct		s_env
@@ -78,5 +78,13 @@ typedef struct		s_map
 	int				height;
 }					t_map;
 
+/*
+**	Functions for reading in input
+*/
 t_point		*init_point(int x, int y, int z, long int color);
 t_point		*read_map(int fd);
+
+/*
+**	Functions for testing purposes
+*/
+void		print_map(t_point *point);

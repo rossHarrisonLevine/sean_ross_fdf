@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 20:10:07 by rlevine           #+#    #+#             */
-/*   Updated: 2017/10/23 19:52:08 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/10/24 11:22:32 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void				ft_putnbr_fd(int nb, int fd);
 void				ft_strclr(char *s);
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 char				*ft_strdup(const char *s1);
+char				*ft_strndup(const char *s1, size_t n);
 char				*ft_strcpy(char *dst, const char *rc);
 char				*ft_strncpy(char *dst, const char *src, size_t len);
 char				*ft_strcat(char *s1, const char *s2);

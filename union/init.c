@@ -15,4 +15,5 @@ t_point	*init_point(int x, int y, int z, long int color)
 	point->color = color;
 	point->right = NULL;
 	point->down = NULL;
+	return point;
 }

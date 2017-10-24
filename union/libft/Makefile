@@ -6,7 +6,7 @@
 #    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/01/03 15:21:19 by rlevine           #+#    #+#              #
-#    Updated: 2017/08/15 20:00:29 by rlevine          ###   ########.fr        #
+#    Updated: 2017/10/24 11:22:53 by sjones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ SRC = 	ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c \
 		ft_strnequ.c ft_strsub.c ft_strjoin.c ft_strtrim.c ft_strsplit.c\
 		ft_lstnew.c ft_lstadd.c ft_lstdel.c ft_lstdelone.c ft_lstiter.c\
 		ft_lstmap.c ft_pwr.c ft_abs.c ft_cnt_parts.c ft_countwhite.c ft_islower.c \
-		ft_isneg.c ft_isupper.c ft_nbrlen.c
+		ft_isneg.c ft_isupper.c ft_nbrlen.c ft_strndup.c get_next_line.c
 
 OBJ = $(SRC:%.c=%.o)
 

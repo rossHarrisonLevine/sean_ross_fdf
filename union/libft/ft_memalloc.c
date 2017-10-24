@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 22:51:16 by rlevine           #+#    #+#             */
-/*   Updated: 2017/07/02 14:25:18 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/10/24 11:17:26 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	*ft_memalloc(size_t t)
 {
 	void	*mem;
 
-	mem = malloc(size);
+	mem = malloc(t);
 	if (!mem)
 		return (NULL);
-	ft_bzero(mem, size);
+	ft_bzero(mem, t);
 	return (mem);
 }

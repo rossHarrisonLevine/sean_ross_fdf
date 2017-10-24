@@ -50,31 +50,38 @@ static t_point	*make_line(char **l_split, int depth)
 		new = init_point(i, depth, get_num(l_split[i]), get_col(l_split[i]));
 		tmp->right = new;
 		tmp = tmp->right;
+		i++;
 	}
 	return head;
 }
 
 static void		add_line(t_point *head, t_point *new)
 {
-	t_point	*tmp;
+	t_point	*tmp1;
+	t_point *tmp2;
 
-	if (!head)
+	printf("entering add_line new->x{%d}\n", new->x);
+	if (head == NULL) {
 		head = new;
-	tmp = head;
-	while (tmp->down)
-		tmp = tmp->down;
-	while (tmp->right)
-	{
-		tmp->down = new;
-		tmp = tmp->right;
-		new = new->right;
+		return;
 	}
+	tmp1 = head;
+	tmp2 = new;
+	while (tmp1->down)
+		tmp1 = tmp1->down;
+	while (tmp1->right)
+	{
+		tmp1->down = tmp2;
+		tmp1 = tmp1->right;
+		tmp2 = tmp2->right;
+	}
+	printf("exiting add_line\n");
 }
 
 t_point			*read_map(int fd)
 {
 	t_point	*head;
-	t_point	*new;
+	t_point *tmp;
 	char	*line;
 	char	**l_split;
 	int		depth;
@@ -85,6 +92,11 @@ t_point			*read_map(int fd)
 	{
 		l_split = ft_strsplit(line, ' ');
 		add_line(head, make_line(l_split, depth));
+		tmp = head;
+		while (tmp->right) {
+			printf("point{x:{%d} y:{%d} z:{%d} color:{%ld}}\n", tmp->x, tmp->y, tmp->z, tmp->color);
+			tmp = tmp->right;
+		}
 		free(l_split);
 		depth++;
 	}
