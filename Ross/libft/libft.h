@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 20:10:07 by rlevine           #+#    #+#             */
-/*   Updated: 2017/07/02 16:24:23 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/10/23 19:24:00 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+int					**matmult_4_4(int ***a, int ***b);
+int					**matmult_1_4(int ***a1, int ***a2);
+int					**matalloc(int x, int y);
 int					get_next_line(const int fd, char **line);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);

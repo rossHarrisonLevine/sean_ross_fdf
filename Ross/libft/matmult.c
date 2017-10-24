@@ -6,27 +6,11 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/14 13:21:11 by rlevine           #+#    #+#             */
-/*   Updated: 2017/10/20 13:00:49 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/10/23 19:24:17 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
 #include "libft.h"
-int **matalloc(int x, int y)
-{
-    int     **ret;
-    int     zed;
-
-    ret = (int**)malloc(sizeof(int*) * y);
-    while (--y >= 0)
-    {
-        ret[y] = (int*)malloc(sizeof(int) * x);
-        zed = 0;
-        while(zed < x)
-            ret[y][zed++] = 0;
-    }
-    return (ret);
-}
 
 int **matmult_1_4(int ***a1, int ***a2)
 {
