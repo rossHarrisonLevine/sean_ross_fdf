@@ -10,7 +10,15 @@
 # define BUFF_SIZE 10
 # define NULL_CHECK(x) if (!x) return (-1)
 
-int get_next_line(const int fd, char **line);
+typedef struct		s_point
+{
+	int				x;
+	int				y;
+	int				z;
+	int				color;
+	s_point			*right;
+	s_point			*down;
+}					t_point;
 
 typedef struct		s_env
 {
@@ -69,3 +77,5 @@ typedef struct		s_map
 	int				width;
 	int				height;
 }					t_map;
+
+struct t_point		init_point(int x, int y, int z);
