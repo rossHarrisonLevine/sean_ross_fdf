@@ -1,6 +1,6 @@
 #include "fdf.h"
 
-t_point	*init_point(int x, int y, int z, int color)
+t_point	*init_point(int x, int y, int z, long int color)
 {
 	t_point *point;
 
