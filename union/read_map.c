@@ -1,34 +1,44 @@
 #include "fdf.h"
 
-static struct t_point	make_line(char **l_split, depth)
+static int		get_num(char *line)
 {
-	struct t_point *head;
-	struct t_point *new;
-	struct t_point *tmp;
+
+}
+
+static int		get_col(char *line)
+{
+
+}
+
+static t_point	*make_line(char **l_split, int depth)
+{
+	t_point	*head;
+	t_point	*new;
+	t_point	*tmp;
 	int i;
 
 	i = 1;
-	head = init_point(0, depth, get_num(l_split[0]), get_col(l_split[i]));
+	head = init_point(0, depth, get_num(l_split[0]), get_col(l_split[0]));
 	tmp = head;
 	while (l_split[i])
 	{
-		new = init_point(i, j, get_num(l_split[i]), get_col(l_split[i]));
+		new = init_point(i, depth, get_num(l_split[i]), get_col(l_split[i]));
 		tmp->right = new;
 		tmp = tmp->right;
 	}
 	return head;
 }
 
-static void				add_line(struct t_point *head, struct t_point *new)
+static void		add_line(t_point *head, t_point *new)
 {
-	struct t_point tmp;
+	t_point	*tmp;
 
 	if (!head)
 		head = new;
 	tmp = head;
 	while (tmp->down)
 		tmp = tmp->down;
-	while (tmp->next)
+	while (tmp->right)
 	{
 		tmp->down = new;
 		tmp = tmp->right;
@@ -36,21 +46,21 @@ static void				add_line(struct t_point *head, struct t_point *new)
 	}
 }
 
-struct t_point			*read_map(int fd)
+t_point			*read_map(int fd)
 {
-	struct t_point	*head;
-	struct t_point	*new;
-	char			*line;
-	char			**l_split;
-	int				depth;
+	t_point	*head;
+	t_point	*new;
+	char	*line;
+	char	**l_split;
+	int		depth;
 
 	head = NULL;
 	depth = 0;
 	while (get_next_line(fd, &line) > 0)
 	{
-		l_split = str_split(line, ' ');
+		l_split = ft_strsplit(line, ' ');
 		add_line(head, make_line(l_split, depth));
-		free l_split;
+		free(l_split);
 		depth++;
 	}
 	return head;

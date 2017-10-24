@@ -1,10 +1,10 @@
 #include "fdf.h"
 
-struct t_point	init_point(int x, int y, int z)
+t_point	*init_point(int x, int y, int z, int color)
 {
-	struct t_point *point;
+	t_point *point;
 
-	if (!(point = (struct t_point*)malloc(sizeof(struct t_point))))
+	if (!(point = (t_point*)malloc(sizeof(t_point))))
 	{
 		perror("Not enough space for a point malloc\n");
 		return NULL;
@@ -12,6 +12,7 @@ struct t_point	init_point(int x, int y, int z)
 	point->x = x;
 	point->y = y;
 	point->z = z;
+	point->color = color;
 	point->right = NULL;
 	point->down = NULL;
 }

@@ -78,5 +78,5 @@ typedef struct		s_map
 	int				height;
 }					t_map;
 
-struct t_point		*init_point(int x, int y, int z);
-struct t_point		*read_map(int fd);
+t_point		*init_point(int x, int y, int z, int color);
+t_point		*read_map(int fd);
