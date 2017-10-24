@@ -38,32 +38,28 @@ static long int	get_col(char *line)
 static t_point	*make_line(char **l_split, int depth)
 {
 	t_point	*head;
-	t_point	*new;
 	t_point	*tmp;
 	int i;
 
 	i = 1;
-	head = init_point(0, depth, get_num(l_split[0]), get_col(l_split[0]));
-	tmp = head;
+	tmp = init_point(0, depth, get_num(l_split[0]), get_col(l_split[0]));
+	head = tmp;
 	while (l_split[i])
 	{
-		new = init_point(i, depth, get_num(l_split[i]), get_col(l_split[i]));
-		tmp->right = new;
+		tmp->right = init_point(i, depth, get_num(l_split[i]), get_col(l_split[i]));
 		tmp = tmp->right;
 		i++;
 	}
 	return head;
 }
 
-static void		add_line(t_point *head, t_point *new)
+static t_point		*add_line(t_point *head, t_point *new)
 {
 	t_point	*tmp1;
 	t_point *tmp2;
 
-	printf("entering add_line new->x{%d}\n", new->x);
 	if (head == NULL) {
-		head = new;
-		return;
+		return new;
 	}
 	tmp1 = head;
 	tmp2 = new;
@@ -75,13 +71,12 @@ static void		add_line(t_point *head, t_point *new)
 		tmp1 = tmp1->right;
 		tmp2 = tmp2->right;
 	}
-	printf("exiting add_line\n");
+	return head;
 }
 
 t_point			*read_map(int fd)
 {
 	t_point	*head;
-	t_point *tmp;
 	char	*line;
 	char	**l_split;
 	int		depth;
@@ -91,12 +86,7 @@ t_point			*read_map(int fd)
 	while (get_next_line(fd, &line) > 0)
 	{
 		l_split = ft_strsplit(line, ' ');
-		add_line(head, make_line(l_split, depth));
-		tmp = head;
-		while (tmp->right) {
-			printf("point{x:{%d} y:{%d} z:{%d} color:{%ld}}\n", tmp->x, tmp->y, tmp->z, tmp->color);
-			tmp = tmp->right;
-		}
+		head = add_line(head, make_line(l_split, depth));
 		free(l_split);
 		depth++;
 	}
