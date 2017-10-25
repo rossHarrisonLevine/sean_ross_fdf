@@ -3,12 +3,13 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sjones <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
-#    Updated: 2017/10/24 21:36:42 by sjones           ###   ########.fr        #
+#    Updated: 2017/10/25 13:04:08 by rlevine          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 NAME = fdf
 CC = gcc
 FLAGS = -Wall -Wextra -Werror
@@ -18,7 +19,9 @@ SRC = key_hooks.c \
 	  read_map.c \
 	  test_functions.c \
 	  init.c \
-	  main.c
+	  main.c \
+	  translate.c \
+	  zoom.c
 OBJ = $(SRC:%.c=%.o)
 INCL = fdf.h
 all: $(NAME)

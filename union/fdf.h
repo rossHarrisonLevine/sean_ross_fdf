@@ -87,6 +87,13 @@ int			key_hook(int key, t_super *s);
 t_point		*read_map(int fd);
 
 /*
+**	Movement funtions
+*/
+
+void		translate_map(int x, int y, t_point *point);
+void		zoom(float mult, t_point *point);
+
+/*
 **	Functions for testing purposes
 */
 

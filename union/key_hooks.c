@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_hooks.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjones <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 14:59:53 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/24 22:11:53 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 13:11:31 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,18 @@ int		key_hook(int key, t_super *s)
 		exit(0);
 	if (key == KEY_P)
 		print_map(s->map->map);
+	if (key == KEY_UP)
+		translate_map(0, 1, s->map->map);
+	if (key == KEY_DOWN)
+		translate_map(0, -1, s->map->map);
+	if (key == KEY_RIGHT)
+		translate_map(1, 0, s->map->map);
+	if (key == KEY_LEFT)
+		translate_map(-1, 0, s->map->map);
+	if (key == KEY_PAD_ADD)
+		zoom(2, s->map->map);
+	if (key == KEY_PAD_SUB)
+		zoom(0.5, s->map->map);
 	return (0);
 }
 /*
