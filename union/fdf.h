@@ -1,14 +1,12 @@
-//#include "../get_next_line/get_next_line.h"
+# include "./minilibx_macos/mlx.h"
 # include "./libft/libft.h"
+# include "mlx_keys_macros.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
-# include "./minilibx_macos/mlx.h"
-# define BUFF_SIZE 10
-# define NULL_CHECK(x) if (!x) return (-1)
 
 typedef struct		s_point
 {
@@ -20,25 +18,14 @@ typedef struct		s_point
 	struct s_point	*down;
 }					t_point;
 
-typedef struct		s_env
+typedef struct		s_win
 {
-	int				tmp;
 	char			*tit;
-	int				min_h;
-	int				max_h;
-	float			curr_z;
-	float			next_z;
 	int				w;
 	int				h;
-	int				big;
-	int				gap;
-	int				i;
-	int				j;
-	float			max;
-	float			maxside;
 	void			*mlx;
 	void			*win;
-}					t_env;
+}					t_win;
 
 typedef	struct		s_bresen
 {
@@ -68,18 +55,37 @@ typedef	struct		s_bresen
 
 typedef struct		s_map
 {
-	char			**map;
-	int				width;
-	int				height;
+	t_point			*map;
+	int				w;
+	int				h;
 }					t_map;
 
+typedef struct		s_super
+{
+	t_win			*win;
+	t_map			*map;
+	t_bresen		*bres;
+}					t_super;
+
 /*
-**	Functions for reading in input
+** Initialization Functions
 */
+
+t_super		*init_super(int fd);
+t_map		*init_map(int fd);
 t_point		*init_point(int x, int y, int z, long int color);
+t_win		*init_win(int h, int w);
+t_bresen	*init_bresen(t_point *p1, t_point *p2);
+
+/*
+**	Functions for running FdF
+*/
+
+int			key_hook(int key, t_super *s);
 t_point		*read_map(int fd);
 
 /*
 **	Functions for testing purposes
 */
+
 void		print_map(t_point *point);

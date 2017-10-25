@@ -35,14 +35,20 @@ static void	initbres_help(t_bresen *bres)
 	if (bres->m <= 1 && bres->m >= -1)
 	{
 		if (bres->x2 < bres->x1)
+		{
 			positivize(bres, 0);
+			bres->y1 = bres->y2;
+		}
 		bres->flip = 0;
 	}
 	else
 	{
 		bres->m = bres->run / bres->rise;
 		if (bres->y2 < bres->y1)
+		{
 			positivize(bres, 1);
+			bres->x1 = bres->x2;
+		}
 		bres->flip = 1;
 	}
 }
@@ -130,15 +136,10 @@ void	drawline(t_point *p1, t_point *p2, t_env *win)
 
 int main(void)
 {
-	t_env	*win;
-	t_point *p1 = init_point(200, 100, 100, 0);
+	t_env	*env = init_env(600, 1000);
+	t_point *p1 = init_point(-200, 100, 100, 0);
 	t_point *p2 = init_point(150, 200, 100, 0);
-	win = (t_env*)malloc(sizeof(t_env));
-	win->tit = "I'm Mister Window, look at me!";
-	win->mlx = mlx_init();
-	win->h = 400;
-	win->w = 500;
-	win->win = mlx_new_window(win->mlx, win->w, win->h, win->tit);
-	drawline(p1, p2, win);
-	mlx_loop(win->mlx);
+	drawline(p1, p2, env);
+	mlx_key_hook(env->win, key_hook, env);
+	mlx_loop(env->mlx);
 }
