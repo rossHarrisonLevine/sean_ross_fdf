@@ -10,9 +10,9 @@
 
 typedef struct		s_point
 {
-	int				x;
-	int				y;
-	int				z;
+	float			x;
+	float			y;
+	float			z;
 	long int		color;
 	struct s_point	*right;
 	struct s_point	*down;
@@ -32,11 +32,13 @@ typedef	struct		s_bresen
 	int				slope;
 	int				flip;
 	int				yw;
-	int				x1;
-	int				y1;
-	int				x2;
-	int				y2;
-	int				m;
+	int				x;
+	int				y;
+	float			x1;
+	float			y1;
+	float			x2;
+	float			y2;
+	float			m;
 	float			rise;
 	float			run;
 	float			offset;
