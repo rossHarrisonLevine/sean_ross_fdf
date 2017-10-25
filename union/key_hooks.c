@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 14:59:53 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 13:25:33 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 14:44:23 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,18 @@ int		key_hook(int key, t_super *s)
 		zoom(2, s->map->map);
 	if (key == KEY_PAD_SUB)
 		zoom(0.5, s->map->map);
-	draw_map(s);
+	if (key == KEY_1)
+		rotate('x', 1, s->map->map)
+	if (key == KEY_2)
+		rotate('x', -1, s->map->map)
+	if (key == KEY_3)
+		rotate('y', 1, s->map->map)
+	if (key == KEY_4)
+		rotate('y', -1, s->map->map)
+	if (key == KEY_5)
+		rotate('z', 1, s->map->map)
+	if (key == KEY_6)
+		rotate('z', -1, s->map->map)
 	return (0);
 }
 /*
