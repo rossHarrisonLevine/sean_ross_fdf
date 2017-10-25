@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 22:04:24 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/24 22:04:25 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 16:07:01 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,34 @@ t_super		*init_super(int fd)
 	super->win = init_win(1000, 1000);
 	super->map = init_map(fd);
 	super->bres = NULL;
+	super->keys = init_keys();
 	return (super);
+}
+
+t_keys		*init_keys(void)
+{
+	t_keys	*keys;
+
+	if(!(keys = (t_keys*)malloc(sizeof(t_keys))))
+	{
+		perror("not enough space for a t_keys");
+		return (NULL);
+	}
+	keys->esc = false;
+	keys->p = false;
+	keys->up = false;
+	keys->down = false;
+	keys->left = false;
+	keys->right = false;
+	keys->add = false;
+	keys->sub = false;
+	keys->n1 = false;
+	keys->n2 = false;
+	keys->n3 = false;
+	keys->n4 = false;
+	keys->n5 = false;
+	keys->n6 = false;
+	return (keys);
 }
 
 t_map		*init_map(int fd)
@@ -49,7 +76,7 @@ t_map		*init_map(int fd)
 	while (tmp)
 	{
 		tmp = tmp->right;
-		map->h++;
+		map->w++;
 	}
 	return (map);
 }

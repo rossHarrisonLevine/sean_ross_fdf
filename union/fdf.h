@@ -7,6 +7,7 @@
 # include <fcntl.h>
 # include <math.h>
 # include <string.h>
+# include <stdbool.h>
 
 typedef struct		s_point
 {
@@ -62,11 +63,30 @@ typedef struct		s_map
 	int				h;
 }					t_map;
 
+typedef struct		s_keys
+{
+	bool			esc;
+	bool			p;
+	bool			up;
+	bool			down;
+	bool			right;
+	bool			left;
+	bool			add;
+	bool			sub;
+	bool			n1;
+	bool			n2;
+	bool			n3;
+	bool			n4;
+	bool			n5;
+	bool			n6;
+}					t_keys;
+
 typedef struct		s_super
 {
 	t_win			*win;
 	t_map			*map;
 	t_bresen		*bres;
+	t_keys			*keys;
 }					t_super;
 
 /*
@@ -78,6 +98,7 @@ t_map		*init_map(int fd);
 t_point		*init_point(int x, int y, int z, long int color);
 t_win		*init_win(int h, int w);
 t_bresen	*init_bresen(t_point *p1, t_point *p2);
+t_keys		*init_keys(void);
 
 /*
 **	Functions for running FdF
