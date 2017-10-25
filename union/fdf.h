@@ -85,6 +85,8 @@ t_bresen	*init_bresen(t_point *p1, t_point *p2);
 
 int			key_hook(int key, t_super *s);
 t_point		*read_map(int fd);
+void		draw_map(t_super *s);
+void		draw_line(t_point *p1, t_point *p2, t_win *win);
 
 /*
 **	Movement funtions

@@ -1,28 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   draw_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/24 22:07:01 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 13:25:49 by sjones           ###   ########.fr       */
+/*   Created: 2017/10/25 12:55:36 by sjones            #+#    #+#             */
+/*   Updated: 2017/10/25 13:22:50 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+static void	draw_row(t_point *row, t_win *win)
 {
-	t_super *super;
-
-	if (ac != 2)
+	while (row)
 	{
-		write(1, "Put a map in please! :]\n", 24);
-		return (0);
+		if (row->right)
+			draw_line(row, row->right, win);
+		if (row->down)
+			draw_line(row, row->down, win);
+		row = row->right;
 	}
-	super = init_super(open(av[1], O_RDONLY));
-	draw_map(super);
-	mlx_key_hook(super->win->win, key_hook, super);
-	mlx_loop(super->win->mlx);
+}
+
+void	draw_map(t_super *s)
+{
+	t_point	*tmp;
+
+	tmp = s->map->map;
+	while (tmp)
+	{
+		draw_row(tmp, s->win);
+		tmp = tmp->down;
+	}
 }

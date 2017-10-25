@@ -125,7 +125,7 @@ static void	flip(t_bresen *bres)
 /*draws verticals, pawns off steeps to drawline_h1
 and shallows to drawline_h0*/
 
-void	drawline(t_point *p1, t_point *p2, t_win *win)
+void	draw_line(t_point *p1, t_point *p2, t_win *win)
 {
 	t_bresen *bres;
 
@@ -145,6 +145,7 @@ void	drawline(t_point *p1, t_point *p2, t_win *win)
 	}
 }
 
+/*
 int main(void)
 {
 	t_win	*win;
@@ -156,11 +157,10 @@ int main(void)
 	win->h = 400;
 	win->w = 500;
 	win->win = mlx_new_window(win->mlx, win->w, win->h, win->tit);
-	drawline(p1, p2, win);
+	draw_line(p1, p2, win);
 	mlx_loop(win->mlx);
 }
 
-/*
 Steep lh
 	t_point *p1 = init_point(100, 100, 100, 0);
 	t_point *p2 = init_point(95, 200, 100, 0);

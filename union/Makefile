@@ -6,7 +6,7 @@
 #    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
-#    Updated: 2017/10/25 13:04:08 by rlevine          ###   ########.fr        #
+#    Updated: 2017/10/25 13:19:16 by sjones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,9 @@ SRC = key_hooks.c \
 	  init.c \
 	  main.c \
 	  translate.c \
-	  zoom.c
+	  zoom.c \
+	  draw_map.c \
+	  draw_line.c
 OBJ = $(SRC:%.c=%.o)
 INCL = fdf.h
 all: $(NAME)
