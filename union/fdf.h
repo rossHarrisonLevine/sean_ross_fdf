@@ -94,6 +94,7 @@ void		draw_line(t_point *p1, t_point *p2, t_win *win);
 
 void		translate_map(int x, int y, t_point *point);
 void		zoom(float mult, t_point *point);
+void        rotate(char c, int dir, t_point *point);
 
 /*
 **	Functions for testing purposes
