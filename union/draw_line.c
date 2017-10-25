@@ -146,21 +146,6 @@ void	draw_line(t_point *p1, t_point *p2, t_win *win)
 }
 
 /*
-int main(void)
-{
-	t_win	*win;
-	t_point *p1 = init_point(100, 100, 100, 0);
-	t_point *p2 = init_point(200, 200, 100, 0);
-	win = (t_win*)malloc(sizeof(t_win));
-	win->tit = "I'm Mister Window, look at me!";
-	win->mlx = mlx_init();
-	win->h = 400;
-	win->w = 500;
-	win->win = mlx_new_window(win->mlx, win->w, win->h, win->tit);
-	draw_line(p1, p2, win);
-	mlx_loop(win->mlx);
-}
-
 Steep lh
 	t_point *p1 = init_point(100, 100, 100, 0);
 	t_point *p2 = init_point(95, 200, 100, 0);

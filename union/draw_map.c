@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 12:55:36 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 13:22:50 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 13:34:12 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	draw_map(t_super *s)
 	t_point	*tmp;
 
 	tmp = s->map->map;
+	mlx_clear_window(s->win->mlx, s->win->win);
 	while (tmp)
 	{
 		draw_row(tmp, s->win);
