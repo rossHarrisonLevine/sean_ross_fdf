@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 16:31:25 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/24 16:31:32 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/24 21:48:27 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,23 +28,15 @@ static int		get_num(char *line)
 
 static long int	get_col(char *line)
 {
-	char		tmp[ft_strlen(line)];
 	int			i;
 
 	i = 0;
-	while (line[i] && line[i] != ',')
-		i++;
 	if (!(line[i]))
 		return (0);
-	else
-	{
-		while (line[i])
-		{
-			tmp[i] = line[i];
-			i++;
-		}
-		return (strtol(tmp, NULL, 16));
-	}
+	while (line[i] && line[i] != ',')
+		i++;
+	i++;
+	return (strtol(line + i, NULL, 16));
 }
 
 static t_point	*make_line(char **l_split, int depth)
