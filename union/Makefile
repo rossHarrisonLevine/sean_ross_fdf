@@ -1,14 +1,22 @@
-NAME    =   fdf
-
-CC      =   gcc
-FLAGS   =   -Wall -Wextra -Werror
-MLX     =   -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
-LFT     =   -L libft -lft
-
-SRC     =   *.c
-OBJ     =   $(SRC:%.c=%.o)
-INCL    =  fdf.h
-
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: sjones <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
+#    Updated: 2017/05/30 15:51:02 by sjones           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+NAME = fdf
+CC = gcc
+FLAGS = -Wall -Wextra -Werror
+MLX = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
+LFT = -L libft -lft
+SRC = *.c
+OBJ = $(SRC:%.c=%.o)
+INCL = fdf.h
 all: $(NAME)
 
 $(NAME):

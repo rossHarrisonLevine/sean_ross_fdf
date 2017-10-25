@@ -22,15 +22,8 @@ typedef struct		s_point
 
 typedef struct		s_env
 {
-	//t_points		**cart;
 	int				tmp;
 	char			*tit;
-	int				x;
-	int				y;
-	float			x1;
-	float			y1;
-	float			x2;
-	float			y2;
 	int				min_h;
 	int				max_h;
 	float			curr_z;
@@ -41,9 +34,6 @@ typedef struct		s_env
 	int				gap;
 	int				i;
 	int				j;
-	float			m;
-	float			rise;
-	float			run;
 	float			max;
 	float			maxside;
 	void			*mlx;
@@ -55,8 +45,13 @@ typedef	struct		s_bresen
 	int				slope;
 	int				flip;
 	int				yw;
-	int				x;
-	int				y;
+	int				x1;
+	int				y1;
+	int				x2;
+	int				y2;
+	int				m;
+	float			rise;
+	float			run;
 	float			offset;
 	float			threshold;
 	float			thresholdinc;
