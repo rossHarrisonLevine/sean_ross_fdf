@@ -104,7 +104,9 @@ t_keys		*init_keys(void);
 **	Functions for running FdF
 */
 
-int			key_hook(int key, t_super *s);
+int			key_press_hook(int key, t_super *s);
+int			key_release_hook(int key, t_super *s);
+int			loop_hook(t_super *s);
 t_point		*read_map(int fd);
 void		draw_map(t_super *s);
 void		draw_line(t_point *p1, t_point *p2, t_win *win);
