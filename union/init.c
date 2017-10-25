@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/24 22:04:24 by sjones            #+#    #+#             */
+/*   Updated: 2017/10/24 22:04:25 by sjones           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 t_super		*init_super(int fd)
@@ -7,12 +19,12 @@ t_super		*init_super(int fd)
 	if (!(super = (t_super*)malloc(sizeof(t_super))))
 	{
 		perror("not enough space for a t_super");
-		return NULL;
+		return (NULL);
 	}
 	super->win = init_win(1000, 1000);
 	super->map = init_map(fd);
 	super->bres = NULL;
-	return super;
+	return (super);
 }
 
 t_map		*init_map(int fd)
@@ -23,7 +35,7 @@ t_map		*init_map(int fd)
 	if (!(map = (t_map*)malloc(sizeof(t_map))))
 	{
 		perror("not enough space for a t_map");
-		return NULL;
+		return (NULL);
 	}
 	map->map = read_map(fd);
 	map->w = 0;
@@ -39,7 +51,7 @@ t_map		*init_map(int fd)
 		tmp = tmp->right;
 		map->h++;
 	}
-	return map;
+	return (map);
 }
 
 t_win		*init_win(int h, int w)
