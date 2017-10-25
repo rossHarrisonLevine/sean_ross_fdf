@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 16:31:25 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/24 21:48:27 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 13:39:59 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static t_point	*add_line(t_point *head, t_point *new)
 	tmp2 = new;
 	while (tmp1->down)
 		tmp1 = tmp1->down;
-	while (tmp1->right)
+	while (tmp1)
 	{
 		tmp1->down = tmp2;
 		tmp1 = tmp1->right;
