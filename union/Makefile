@@ -6,7 +6,7 @@
 #    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
-#    Updated: 2017/10/25 14:47:36 by rlevine          ###   ########.fr        #
+#    Updated: 2017/10/25 22:32:13 by sjones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ FLAGS = -Wall -Wextra -Werror
 MLX = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
 LFT = -L libft -lft
 SRC = key_hooks.c \
+	  loop_hook.c \
 	  read_map.c \
 	  test_functions.c \
 	  init.c \
+	  init_bresen.c \
 	  main.c \
 	  translate.c \
 	  zoom.c \
