@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   zoom.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:14:01 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 22:17:42 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/26 16:17:28 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,8 @@ void			zoom(float mult, t_map *map)
 	float	midvalx;
 	float	midvaly;
 
+	if (mult < 1 && map->map->right->x - map->map->x < 1)
+		return ;
 	tmp = map->map;
 	midvalx = getmidval('x', map);
 	midvaly = getmidval('y', map);
