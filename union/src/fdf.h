@@ -1,3 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fdf.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
+/*   Updated: 2017/10/26 16:09:33 by sjones           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FDF_H
+# define FDF_H
 # include "../minilibx_macos/mlx.h"
 # include "../libft/libft.h"
 # include "mlx_keys_macros.h"
@@ -93,34 +107,36 @@ typedef struct		s_super
 ** Initialization Functions
 */
 
-t_super		*init_super(int fd);
-t_map		*init_map(int fd);
-t_point		*init_point(int x, int y, int z, long int color);
-t_win		*init_win(int h, int w);
-t_bresen	*init_bresen(t_point *p1, t_point *p2);
-t_keys		*init_keys(void);
+t_super				*init_super(int fd);
+t_map				*init_map(int fd);
+t_point				*init_point(int x, int y, int z, long int color);
+t_win				*init_win(int h, int w);
+t_bresen			*init_bresen(t_point *p1, t_point *p2);
+t_keys				*init_keys(void);
 
 /*
 **	Functions for running FdF
 */
 
-int			key_press_hook(int key, t_super *s);
-int			key_release_hook(int key, t_super *s);
-int			loop_hook(t_super *s);
-t_point		*read_map(int fd);
-void		draw_map(t_super *s);
-void		draw_line(t_point *p1, t_point *p2, t_win *win);
+int					key_press_hook(int key, t_super *s);
+int					key_release_hook(int key, t_super *s);
+int					loop_hook(t_super *s);
+t_point				*read_map(int fd);
+void				draw_map(t_super *s);
+void				draw_line(t_point *p1, t_point *p2, t_win *win);
 
 /*
 **	Movement funtions
 */
 
-void		translate_map(float x, float y, t_point *point);
-void		zoom(float mult, t_map *point);
-void        rotate(char c, int dir, t_point *point);
+void				translate_map(float x, float y, t_point *point);
+void				zoom(float mult, t_map *point);
+void				rotate(char c, int dir, t_point *point);
 
 /*
 **	Functions for testing purposes
 */
 
-void		print_map(t_point *point);
+void				print_map(t_point *point);
+
+#endif

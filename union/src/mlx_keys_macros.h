@@ -6,12 +6,12 @@
 /*   By: sjones <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/10 15:02:01 by sjones            #+#    #+#             */
-/*   Updated: 2017/03/22 14:01:17 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/26 16:07:07 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MLX_KEYS_MACOS_H
-# define MLX_KEYS_MACOS_H
+#ifndef MLX_KEYS_MACROS_H
+# define MLX_KEYS_MACROS_H
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122
