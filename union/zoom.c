@@ -41,7 +41,7 @@ static float	getmidval(char wat, t_map *map)
 	t_point	*tmp;
 
 	tmp = map->map;
-	i = 1;
+	i = 0;
 	if (wat == 'x')
 	{
 		printf("%d\n", (map->w /2));

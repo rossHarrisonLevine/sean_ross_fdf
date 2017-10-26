@@ -6,10 +6,10 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 14:59:53 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 21:44:43 by sjones           ###   ########.fr       */
-/*   Updated: 2017/10/25 16:33:16 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 21:49:04 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "fdf.h"
 
@@ -28,9 +28,9 @@ int		loop_hook(t_super *s)
 	if (s->keys->left == true)
 		translate_map(-1, 0, s->map->map);
 	if (s->keys->add == true)
-		zoom(2, s->map);
+		zoom(1.2, s->map);
 	if (s->keys->sub == true)
-		zoom(0.5, s->map);
+		zoom(0.8, s->map);
 	if (s->keys->n1 == true)
 		rotate('x', 1, s->map->map);
 	if (s->keys->n2 == true)

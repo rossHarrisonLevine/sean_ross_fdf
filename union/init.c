@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 22:04:24 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 16:32:46 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 21:47:53 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ t_map		*init_map(int fd)
 		tmp = tmp->down;
 		map->h++;
 	}
+	tmp = map->map;
 	while (tmp)
 	{
 		tmp = tmp->right;
