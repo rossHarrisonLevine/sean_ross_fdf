@@ -1,5 +1,5 @@
-# include "./minilibx_macos/mlx.h"
-# include "./libft/libft.h"
+# include "../minilibx_macos/mlx.h"
+# include "../libft/libft.h"
 # include "mlx_keys_macros.h"
 # include <stdlib.h>
 # include <unistd.h>

@@ -6,7 +6,7 @@
 #    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
-#    Updated: 2017/10/25 22:32:13 by sjones           ###   ########.fr        #
+#    Updated: 2017/10/26 16:00:39 by sjones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,20 +15,22 @@ CC = gcc
 FLAGS = -Wall -Wextra -Werror
 MLX = -L minilibx_macos -lmlx -framework OpenGL -framework AppKit
 LFT = -L libft -lft
-SRC = key_hooks.c \
-	  loop_hook.c \
-	  read_map.c \
-	  test_functions.c \
-	  init.c \
-	  init_bresen.c \
-	  main.c \
-	  translate.c \
-	  zoom.c \
-	  draw_map.c \
-	  draw_line.c \
-	  rotate.c
-OBJ = $(SRC:%.c=%.o)
-INCL = fdf.h
+SRC_PATH =	src
+SRC_NAME =	key_hooks.c \
+			loop_hook.c \
+			read_map.c \
+			test_functions.c \
+			init.c \
+			init_bresen.c \
+			main.c \
+			translate.c \
+			zoom.c \
+			draw_map.c \
+			draw_line.c \
+			rotate.c
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+OBJ =	$(SRC_NAME:%.c=%.o)
+INCL = inc/fdf.h
 all: $(NAME)
 
 $(NAME):
