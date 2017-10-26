@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:21:46 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 22:37:05 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 22:57:44 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	drawpoint(t_win *win, t_bresen *bres)
 
 static void	drawline_h0(t_win *win, t_bresen *bres)
 {
-	while (bres->x < bres->x2 + 1)
+	while (bres->x < bres->x2)
 	{
 		drawpoint(win, bres);
 		bres->offset += bres->m;
@@ -32,7 +32,7 @@ static void	drawline_h0(t_win *win, t_bresen *bres)
 
 static void	drawline_h1(t_win *win, t_bresen *bres)
 {
-	while (bres->y < bres->y2 + 1)
+	while (bres->y < bres->y2)
 	{
 		drawpoint(win, bres);
 		bres->offset += bres->m;
@@ -78,7 +78,7 @@ void		draw_line(t_point *p1, t_point *p2, t_win *win)
 	else if (bres->flip == 2)
 	{
 		flip(bres);
-		while (bres->y < bres->y2 + 1)
+		while (bres->y < bres->y2)
 		{
 			drawpoint(win, bres);
 			bres->y++;
