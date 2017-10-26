@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 12:55:36 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 13:34:12 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 16:32:02 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_row(t_point *row, t_win *win)
 	}
 }
 
-void	draw_map(t_super *s)
+void		draw_map(t_super *s)
 {
 	t_point	*tmp;
 

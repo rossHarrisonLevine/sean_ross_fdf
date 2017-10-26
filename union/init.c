@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 22:04:24 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 16:07:01 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/25 16:32:46 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_keys		*init_keys(void)
 {
 	t_keys	*keys;
 
-	if(!(keys = (t_keys*)malloc(sizeof(t_keys))))
+	if (!(keys = (t_keys*)malloc(sizeof(t_keys))))
 	{
 		perror("not enough space for a t_keys");
 		return (NULL);
