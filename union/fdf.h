@@ -113,8 +113,8 @@ void		draw_line(t_point *p1, t_point *p2, t_win *win);
 **	Movement funtions
 */
 
-void		translate_map(int x, int y, t_point *point);
-void		zoom(float mult, t_point *point);
+void		translate_map(float x, float y, t_point *point);
+void		zoom(float mult, t_map *point);
 void        rotate(char c, int dir, t_point *point);
 
 /*
