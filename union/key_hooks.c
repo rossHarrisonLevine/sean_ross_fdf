@@ -6,11 +6,8 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 14:59:53 by sjones            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/10/25 20:04:13 by rlevine          ###   ########.fr       */
-=======
+/*   Updated: 2017/10/25 21:44:43 by sjones           ###   ########.fr       */
 /*   Updated: 2017/10/25 16:33:16 by sjones           ###   ########.fr       */
->>>>>>> ba32ae4f83c5e8a889fa3624c127f0deed211b87
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +27,11 @@ int		loop_hook(t_super *s)
 		translate_map(1, 0, s->map->map);
 	if (s->keys->left == true)
 		translate_map(-1, 0, s->map->map);
-<<<<<<< HEAD
-	if (key == KEY_PAD_ADD)
-		zoom(2, s->map);
-	if (key == KEY_PAD_SUB)
-		zoom(0.5, s->map);
-	if (key == KEY_1)
-=======
 	if (s->keys->add == true)
-		zoom(2, s->map->map);
+		zoom(2, s->map);
 	if (s->keys->sub == true)
-		zoom(0.5, s->map->map);
+		zoom(0.5, s->map);
 	if (s->keys->n1 == true)
->>>>>>> ba32ae4f83c5e8a889fa3624c127f0deed211b87
 		rotate('x', 1, s->map->map);
 	if (s->keys->n2 == true)
 		rotate('x', -1, s->map->map);
