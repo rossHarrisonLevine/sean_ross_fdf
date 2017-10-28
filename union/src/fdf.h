@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/28 15:27:40 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/28 16:42:08 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,7 @@ int					loop_hook(t_super *s);
 t_point				*read_map(int fd);
 void				draw_map(t_super *s);
 void				draw_line(t_point *p1, t_point *p2, t_win *win);
+int					color_diff(t_bresen *bres);
 
 /*
 **	Movement funtions

@@ -6,7 +6,7 @@
 #    By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/03/21 17:18:42 by sjones            #+#    #+#              #
-#    Updated: 2017/10/26 16:00:39 by sjones           ###   ########.fr        #
+#    Updated: 2017/10/28 16:42:53 by sjones           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC_NAME =	key_hooks.c \
 			zoom.c \
 			draw_map.c \
 			draw_line.c \
-			rotate.c
+			rotate.c \
+			colorhandler.c
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJ =	$(SRC_NAME:%.c=%.o)
 INCL = inc/fdf.h
