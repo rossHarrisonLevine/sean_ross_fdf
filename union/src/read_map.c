@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:39:22 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 22:39:25 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/27 16:04:57 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static long int	get_col(char *line)
 	int			i;
 
 	i = 0;
-	if (!(line[i]))
-		return (0);
 	while (line[i] && line[i] != ',')
 		i++;
 	i++;
+	if (!(line[i]))
+		return (0xFFFFFF);
 	return (strtol(line + i, NULL, 16));
 }
 

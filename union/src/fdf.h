@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/26 16:09:33 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/28 15:27:40 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 # include <math.h>
 # include <string.h>
 # include <stdbool.h>
+
+# define ABS(x) (x < 0) ? -x : x
 
 typedef struct		s_point
 {
@@ -44,7 +46,6 @@ typedef struct		s_win
 
 typedef	struct		s_bresen
 {
-	int				slope;
 	int				flip;
 	int				yw;
 	int				x;
@@ -59,15 +60,13 @@ typedef	struct		s_bresen
 	float			offset;
 	float			threshold;
 	float			thresholdinc;
-	float			tmp;
 	float			adjust;
-	float			delta;
-	int				colorgrade;
-	float			color;
-	float			range;
-	char			*str;
-	char			**coord;
-	char			*line;
+	int				color1;
+	int				color2;
+	int				dr;
+	int				dg;
+	int				db;
+	int				color;
 }					t_bresen;
 
 typedef struct		s_map
