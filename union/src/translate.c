@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:19:23 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/28 15:58:05 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/28 17:15:54 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,18 @@
 ** of x (horizantal) and y (vertical)
 */
 
-static void		translate_row(float x, float y, t_point *point)
+static void		translate_row(float x, float y, float z, t_point *point)
 {
 	while (point)
 	{
 		point->x += x;
 		point->y += y;
+		point->z += z;
 		point = point->right;
 	}
 }
 
-void			translate_map(float x, float y, t_point *point)
+void			translate_map(float x, float y, float z, t_point *point)
 {
 	t_point	*tmp;
 	t_point	*row;
@@ -36,7 +37,7 @@ void			translate_map(float x, float y, t_point *point)
 	while (tmp)
 	{
 		row = tmp;
-		translate_row(x, y, row);
+		translate_row(x, y, z, row);
 		tmp = tmp->down;
 	}
 }

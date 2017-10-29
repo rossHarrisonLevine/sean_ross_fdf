@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/28 16:42:08 by sjones           ###   ########.fr       */
+/*   Updated: 2017/10/28 17:15:52 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ int					color_diff(t_bresen *bres);
 **	Movement funtions
 */
 
-void				translate_map(float x, float y, t_point *point);
+void				translate_map(float x, float y, float z, t_point *point);
 void				zoom(float mult, t_map *point);
 void				rotate(char c, int dir, t_point *point);
 
