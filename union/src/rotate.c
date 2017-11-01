@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rotate.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/01 15:41:08 by sjones            #+#    #+#             */
+/*   Updated: 2017/11/01 15:42:37 by sjones           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
-static void     rotate_x(t_point *point, int dir)
+static void	rotate_x(t_point *point, int dir)
 {
-    float y;
-    float z;
+	float	y;
+	float	z;
 
 	while (point)
 	{
@@ -15,10 +27,10 @@ static void     rotate_x(t_point *point, int dir)
 	}
 }
 
-static void     rotate_y(t_point *point, int dir)
+static void	rotate_y(t_point *point, int dir)
 {
-    float x;
-    float z;
+	float	x;
+	float	z;
 
 	while (point)
 	{
@@ -30,10 +42,10 @@ static void     rotate_y(t_point *point, int dir)
 	}
 }
 
-static void     rotate_z(t_point *point, int dir)
+static void	rotate_z(t_point *point, int dir)
 {
-    float x;
-    float y;
+	float x;
+	float y;
 
 	while (point)
 	{
@@ -45,7 +57,7 @@ static void     rotate_z(t_point *point, int dir)
 	}
 }
 
-void            rotate(char c, int dir, t_point *point)
+void		rotate(char c, int dir, t_point *point)
 {
 	t_point	*tmp;
 	t_point	*row;
@@ -55,11 +67,11 @@ void            rotate(char c, int dir, t_point *point)
 	{
 		row = tmp;
 		if (c == 'x')
-            rotate_x(row, dir);
-        if (c == 'y')
-            rotate_y(row, dir);
-        if (c == 'z')
-            rotate_z(row, dir);
+			rotate_x(row, dir);
+		if (c == 'y')
+			rotate_y(row, dir);
+		if (c == 'z')
+			rotate_z(row, dir);
 		tmp = tmp->down;
 	}
 }
