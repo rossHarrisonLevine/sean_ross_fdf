@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   put_to_center.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 22:38:47 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/06 09:29:23 by sjones           ###   ########.fr       */
+/*   Created: 2017/11/06 09:34:37 by sjones            #+#    #+#             */
+/*   Updated: 2017/11/06 09:59:16 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	main(int ac, char **av)
+void	put_to_center(t_super *s)
 {
-	t_super *super;
-
-	if (ac != 2)
-	{
-		write(1, "Put a map in please! :]\n", 24);
-		return (0);
-	}
-	super = init_super(open(av[1], O_RDONLY));
-	put_to_center(super);
-	draw_map(super);
-	mlx_hook(super->win->win, 2, 0, key_press_hook, super);
-	mlx_hook(super->win->win, 3, 0, key_release_hook, super);
-	mlx_loop_hook(super->win->mlx, loop_hook, super);
-	mlx_loop(super->win->mlx);
+	zoom(0.8 * (MAX(s->win->w / s->map->w, s->win->h / s->map->h)), s->map);
+	translate_map((s->win->w - s->map->w) / 2, (s->win->h - s->map->h) / 2, \
+			0, s->map->map);
 }

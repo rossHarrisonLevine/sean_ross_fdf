@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:14:01 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/26 16:17:28 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/11/01 16:30:39 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,51 +23,41 @@ static void		zoom_row(float alpha, t_point *point, float mx, float my)
 	}
 }
 
-static float	getmidval(char wat, t_map *map)
+void			getmidval(t_map *map)
 {
 	int			i;
-	float		ret;
 	t_point		*tmp;
 
 	tmp = map->map;
 	i = 0;
-	if (wat == 'x')
+	while (i < (map->w / 2))
 	{
-		while (i < (map->w / 2))
-		{
-			tmp = tmp->right;
-			i++;
-		}
-		ret = tmp->x;
+		tmp = tmp->right;
+		i++;
 	}
-	else
+	map->mx = tmp->x;
+	i = 0;
+	while (i < (map->h / 2))
 	{
-		while (i < (map->h / 2))
-		{
-			tmp = tmp->down;
-			i++;
-		}
-		ret = tmp->y;
+		tmp = tmp->down;
+		i++;
 	}
-	return (ret);
+	map->my = tmp->y;
 }
 
 void			zoom(float mult, t_map *map)
 {
 	t_point	*tmp;
 	t_point	*row;
-	float	midvalx;
-	float	midvaly;
 
 	if (mult < 1 && map->map->right->x - map->map->x < 1)
 		return ;
 	tmp = map->map;
-	midvalx = getmidval('x', map);
-	midvaly = getmidval('y', map);
+	getmidval(map);
 	while (tmp)
 	{
 		row = tmp;
-		zoom_row(mult, row, midvalx, midvaly);
+		zoom_row(mult, row, map->mx, map->my);
 		tmp = tmp->down;
 	}
 }

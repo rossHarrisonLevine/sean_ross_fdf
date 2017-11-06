@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:10:05 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/26 16:10:07 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/06 10:33:08 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	print_row(t_point *point)
 {
 	while (point)
 	{
-		printf("{%f, %f, %f},{%ld}", \
+		printf("{%f, %f, %f},{%d}", \
 			point->x, point->y, point->z, point->color);
 		point = point->right;
 		if (point)

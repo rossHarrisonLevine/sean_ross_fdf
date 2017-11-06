@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/24 22:04:24 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 21:47:53 by rlevine          ###   ########.fr       */
+/*   Updated: 2017/11/06 10:20:23 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ t_map		*init_map(int fd)
 		tmp = tmp->right;
 		map->w++;
 	}
+	getmidval(map);
 	return (map);
 }
 
@@ -111,7 +112,7 @@ t_point		*init_point(int x, int y, int z, long int color)
 	point->x = x;
 	point->y = y;
 	point->z = z;
-	point->color = color;
+	point->color = (int)color;
 	point->right = NULL;
 	point->down = NULL;
 	return (point);

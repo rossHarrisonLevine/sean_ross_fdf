@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/28 17:15:52 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/06 11:04:25 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,22 @@
 # include <stdbool.h>
 
 # define ABS(x) (x < 0) ? -x : x
+# define MAX(a, b) (a > b) ? a : b
+# define MIN(a, b) (a < b) ? a : b
+# define GET_R(x) x >> 16 & 0xFF
+# define GET_G(x) x >> 8 & 0xFF
+# define GET_B(x) x & 0xFF
+# define GET_C(r, g, b) r << 16 & g << 8 & b
+# define TH .01
+# define ZI 1.1
+# define ZO 0.9
 
 typedef struct		s_point
 {
 	float			x;
 	float			y;
 	float			z;
-	long int		color;
+	int				color;
 	struct s_point	*right;
 	struct s_point	*down;
 }					t_point;
@@ -61,8 +70,12 @@ typedef	struct		s_bresen
 	float			threshold;
 	float			thresholdinc;
 	float			adjust;
-	int				color1;
-	int				color2;
+	int				r1;
+	int				g1;
+	int				b1;
+	int				r2;
+	int				g2;
+	int				b2;
 	int				dr;
 	int				dg;
 	int				db;
@@ -72,6 +85,8 @@ typedef	struct		s_bresen
 typedef struct		s_map
 {
 	t_point			*map;
+	float			mx;
+	float			my;
 	int				w;
 	int				h;
 }					t_map;
@@ -123,15 +138,17 @@ int					loop_hook(t_super *s);
 t_point				*read_map(int fd);
 void				draw_map(t_super *s);
 void				draw_line(t_point *p1, t_point *p2, t_win *win);
-int					color_diff(t_bresen *bres);
+void				color_diff(t_bresen *bres);
 
 /*
 **	Movement funtions
 */
 
 void				translate_map(float x, float y, float z, t_point *point);
-void				zoom(float mult, t_map *point);
-void				rotate(char c, int dir, t_point *point);
+void				getmidval(t_map *map);
+void				zoom(float mult, t_map *map);
+void				rotate(char c, int dir, t_map *map);
+void				put_to_center(t_super *s);
 
 /*
 **	Functions for testing purposes
