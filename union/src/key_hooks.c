@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/21 14:59:53 by sjones            #+#    #+#             */
-/*   Updated: 2017/10/25 22:08:44 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/06 11:18:43 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ int			key_release_hook(int key, t_super *s)
 		s->keys->right = false;
 	if (key == KEY_LEFT)
 		s->keys->left = false;
-	if (key == KEY_PAD_ADD)
+	if (key == KEY_PAD_ADD || key == KEY_GREATER_THAN)
 		s->keys->add = false;
-	if (key == KEY_PAD_SUB)
+	if (key == KEY_PAD_SUB || key == KEY_LESS_THAN)
 		s->keys->sub = false;
 	key_release_help(key, s);
 	return (0);
@@ -80,9 +80,9 @@ int			key_press_hook(int key, t_super *s)
 		s->keys->right = true;
 	if (key == KEY_LEFT)
 		s->keys->left = true;
-	if (key == KEY_PAD_ADD)
+	if (key == KEY_PAD_ADD || key == KEY_GREATER_THAN)
 		s->keys->add = true;
-	if (key == KEY_PAD_SUB)
+	if (key == KEY_PAD_SUB || key == KEY_LESS_THAN)
 		s->keys->sub = true;
 	key_press_help(key, s);
 	return (0);
