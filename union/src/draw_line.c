@@ -6,11 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:21:46 by sjones            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2017/11/07 17:02:45 by rlevine          ###   ########.fr       */
-=======
-/*   Updated: 2017/11/06 11:30:46 by sjones           ###   ########.fr       */
->>>>>>> 23e953a963a2a0b604eaa2540b33d7e2eed71b61
+/*   Updated: 2017/11/07 17:09:30 by rlevine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +14,12 @@
 
 static void	drawpoint(t_win *win, t_bresen *bres)
 {
-	bres->yw = win->h - bres->y;
-<<<<<<< HEAD
 	float ny;
 	float nx;
-	ny = bres->yw - ((win->h) / 2);
+	ny = (win->h - bres->y) - ((win->h) / 2);
 	nx = bres->x + ((win->w) / 2);
 	//color_diff(bres);
 	mlx_pixel_put(win->mlx, win->win, nx, ny, bres->color);
-=======
-	color_diff(bres);
-	mlx_pixel_put(win->mlx, win->win, bres->x, bres->yw, bres->color);
->>>>>>> 23e953a963a2a0b604eaa2540b33d7e2eed71b61
 }
 
 static void	drawline_h0(t_win *win, t_bresen *bres)
