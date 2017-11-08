@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:28:00 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/06 13:46:39 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/08 15:17:21 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,15 +68,9 @@ static void		initbres_help(t_bresen *bres)
 static void		initbres_color(t_bresen *bres, int col1, int col2)
 {
 	bres->color = col1;
-	bres->r1 = GET_R(col1);
-	bres->g1 = GET_G(col1);
-	bres->b1 = GET_B(col1);
-	bres->r2 = GET_R(col2);
-	bres->g2 = GET_G(col2);
-	bres->b2 = GET_B(col2);
-	bres->dr = bres->r2 - bres->r1;
-	bres->dg = bres->g2 - bres->g1;
-	bres->db = bres->b2 - bres->b1;
+	bres->dr = (GET_R(col2)) - (GET_R(col1));
+	bres->dg = (GET_G(col2)) - (GET_G(col1));
+	bres->db = (GET_B(col2)) - (GET_B(col1));
 }
 
 t_bresen		*init_bresen(t_point *p1, t_point *p2)

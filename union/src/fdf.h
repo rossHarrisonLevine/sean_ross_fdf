@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/07 16:37:31 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/08 15:26:30 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef	struct		s_bresen
 	float			y1;
 	float			x2;
 	float			y2;
+	float			nx;
+	float			ny;
 	float			m;
 	float			rise;
 	float			run;
@@ -71,15 +73,12 @@ typedef	struct		s_bresen
 	float			threshold;
 	float			thresholdinc;
 	float			adjust;
-	int				r1;
-	int				g1;
-	int				b1;
-	int				r2;
-	int				g2;
-	int				b2;
-	int				dr;
-	int				dg;
-	int				db;
+	int				r;
+	int				g;
+	int				b;
+	float			dr;
+	float			dg;
+	float			db;
 	int				color;
 }					t_bresen;
 
