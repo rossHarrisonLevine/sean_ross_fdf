@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/27 16:21:40 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/06 11:07:27 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/06 14:15:23 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,42 @@
 
 void	color_diff(t_bresen *bres)
 {
-	int r;
-	int g;
-	int b;
+	float r;
+	float g;
+	float b;
 
-	bres->dr = bres->r2 - bres->r1;
-	bres->dg = bres->g2 - bres->g1;
-	bres->db = bres->b2 - bres->b1;
+	r = (float)bres->r1;
+	g = (float)bres->g1;
+	b = (float)bres->b1;
 	if (bres->flip == 0)
 	{
-		r = (bres->dr * bres->x) / (bres->x2 - bres->x1);
-		g = (bres->dg * bres->x) / (bres->x2 - bres->x1);
-		b = (bres->db * bres->x) / (bres->x2 - bres->x1);
+		if (bres->dr > 0)
+			r = ABS(((float)bres->dr * (bres->x1 - (float)bres->x)) / bres->run);
+		else if (bres->dr < 0)
+			r = ABS(((float)bres->dr * (bres->x2 - (float)bres->x)) / bres->run);
+		if (bres->dg > 0)
+			g = ABS(((float)bres->dg * (bres->x1 - (float)bres->x)) / bres->run);
+		else if (bres->dg < 0)
+			g = ABS(((float)bres->dg * (bres->x2 - (float)bres->x)) / bres->run);
+		if (bres->db > 0)
+			b = ABS(((float)bres->db * (bres->x1 - (float)bres->x)) / bres->run);
+		else if (bres->db < 0)
+			b = ABS(((float)bres->db * (bres->x1 - (float)bres->x)) / bres->run);
 	}
 	else
 	{
-		r = (bres->dr * bres->y) / (bres->y2 - bres->y1);
-		g = (bres->dg * bres->y) / (bres->y2 - bres->y1);
-		b = (bres->db * bres->y) / (bres->y2 - bres->y1);
+		if (bres->dr > 0)
+			r = ABS(((float)bres->dr * (bres->y1 - (float)bres->y)) / bres->rise);
+		else if (bres->dr < 0)
+			r = ABS(((float)bres->dr * (bres->y2 - (float)bres->y)) / bres->rise);
+		if (bres->dg > 0)
+			g = ABS(((float)bres->dg * (bres->y1 - (float)bres->y)) / bres->rise);
+		else if (bres->dg < 0)
+			g = ABS(((float)bres->dg * (bres->y2 - (float)bres->y)) / bres->rise);
+		if (bres->db > 0)
+			b = ABS(((float)bres->db * (bres->y1 - (float)bres->y)) / bres->rise);
+		else if (bres->db < 0)
+			b = ABS(((float)bres->db * (bres->y2 - (float)bres->y)) / bres->rise);
 	}
-	bres->color = GET_C(r, g, b);
+	bres->color = GET_C((int)r, (int)g, (int)b);
 }

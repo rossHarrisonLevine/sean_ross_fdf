@@ -6,13 +6,17 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/01 15:41:08 by sjones            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2017/11/07 17:05:58 by rlevine          ###   ########.fr       */
+=======
+/*   Updated: 2017/11/07 16:34:49 by sjones           ###   ########.fr       */
+>>>>>>> 23e953a963a2a0b604eaa2540b33d7e2eed71b61
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-static void	rotate_x(t_point *point, int dir, float my)
+static void	rotate_x(t_point *point, int dir, double theta, float my)
 {
 	float	y;
 	float	z;
@@ -21,13 +25,15 @@ static void	rotate_x(t_point *point, int dir, float my)
 	{
 		z = point->z;
 		y = point->y;
-		point->y = ((y * cos(dir * TH)) - (z * sin(dir * TH)) + ((1 - cos(dir * TH)) * my));
-		point->z = ((z * cos(dir * TH)) + (y * sin(dir * TH)) + sin(dir * TH) * my);
+		point->y = ((y * cos(dir * theta)) - (z * sin(dir * theta)) \
+			+ ((1 - cos(dir * theta)) * my));
+		point->z = ((z * cos(dir * theta)) + (y * sin(dir * theta)) \
+			+ sin(dir * theta) * my);
 		point = point->right;
 	}
 }
 
-static void	rotate_y(t_point *point, int dir, float mx)
+static void	rotate_y(t_point *point, int dir, double theta, float mx)
 {
 	float	x;
 	float	z;
@@ -36,13 +42,15 @@ static void	rotate_y(t_point *point, int dir, float mx)
 	{
 		x = point->x;
 		z = point->z;
-		point->x = ((x * cos(TH * dir)) + (z * sin(TH * dir)) + ((1 - cos(dir * TH)) * mx));
-		point->z = (-(x * sin(TH * dir)) + (z * cos(TH * dir)) - sin(dir * TH) * mx);
+		point->x = ((x * cos(theta * dir)) + (z * sin(theta * dir)) \
+			+ ((1 - cos(dir * theta)) * mx));
+		point->z = (-(x * sin(theta * dir)) + (z * cos(theta * dir)) \
+			- sin(dir * theta) * mx);
 		point = point->right;
 	}
 }
 
-static void	rotate_z(t_point *point, int dir)
+static void	rotate_z(t_point *point, int dir, double theta)
 {
 	float x;
 	float y;
@@ -51,13 +59,13 @@ static void	rotate_z(t_point *point, int dir)
 	{
 		x = point->x;
 		y = point->y;
-		point->x = ((x * cos(TH * dir)) + (y * sin(TH * dir)));
-		point->y = ((y * cos(TH * dir) - (x * sin(TH * dir))));
+		point->x = ((x * cos(theta * dir)) + (y * sin(theta * dir)));
+		point->y = ((y * cos(theta * dir) - (x * sin(theta * dir))));
 		point = point->right;
 	}
 }
 
-void		rotate(char c, int dir, t_map *map)
+void		rotate(char c, int dir, double theta, t_map *map)
 {
 	t_point	*tmp;
 	t_point	*row;
@@ -68,11 +76,11 @@ void		rotate(char c, int dir, t_map *map)
 	{
 		row = tmp;
 		if (c == 'x')
-			rotate_x(row, dir, map->mx);
+			rotate_x(row, dir, theta, map->mx);
 		if (c == 'y')
-			rotate_y(row, dir, map->my);
+			rotate_y(row, dir, theta, map->my);
 		if (c == 'z')
-			rotate_z(row, dir);
+			rotate_z(row, dir, theta);
 		tmp = tmp->down;
 	}
 }
