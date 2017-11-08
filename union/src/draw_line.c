@@ -6,7 +6,7 @@
 /*   By: rlevine <rlevine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 22:21:46 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/06 11:07:54 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/06 11:30:46 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static void	drawpoint(t_win *win, t_bresen *bres)
 {
 	bres->yw = win->h - bres->y;
-	//color_diff(bres);
+	color_diff(bres);
 	mlx_pixel_put(win->mlx, win->win, bres->x, bres->yw, bres->color);
 }
 

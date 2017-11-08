@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/26 16:07:44 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/06 11:04:25 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/07 16:37:31 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,11 @@
 # define GET_R(x) x >> 16 & 0xFF
 # define GET_G(x) x >> 8 & 0xFF
 # define GET_B(x) x & 0xFF
-# define GET_C(r, g, b) r << 16 & g << 8 & b
+# define GET_C(r, g, b) r << 16 | g << 8 | b
 # define TH .01
 # define ZI 1.1
 # define ZO 0.9
+# define PI 3.14
 
 typedef struct		s_point
 {
@@ -147,7 +148,7 @@ void				color_diff(t_bresen *bres);
 void				translate_map(float x, float y, float z, t_point *point);
 void				getmidval(t_map *map);
 void				zoom(float mult, t_map *map);
-void				rotate(char c, int dir, t_map *map);
+void				rotate(char c, int dir, double theta, t_map *map);
 void				put_to_center(t_super *s);
 
 /*

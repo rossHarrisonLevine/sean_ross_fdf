@@ -6,7 +6,7 @@
 /*   By: sjones <sjones@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/25 21:56:36 by sjones            #+#    #+#             */
-/*   Updated: 2017/11/01 16:40:38 by sjones           ###   ########.fr       */
+/*   Updated: 2017/11/07 16:33:46 by sjones           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 static void	loop_hook_help(t_super *s)
 {
 	if (s->keys->n1 == true)
-		rotate('x', 1, s->map);
+		rotate('x', 1, TH, s->map);
 	if (s->keys->n2 == true)
-		rotate('x', -1, s->map);
+		rotate('x', -1, TH, s->map);
 	if (s->keys->n3 == true)
-		rotate('y', 1, s->map);
+		rotate('y', 1, TH, s->map);
 	if (s->keys->n4 == true)
-		rotate('y', -1, s->map);
+		rotate('y', -1, TH, s->map);
 	if (s->keys->n5 == true)
-		rotate('z', 1, s->map);
+		rotate('z', 1, TH, s->map);
 	if (s->keys->n6 == true)
-		rotate('z', -1, s->map);
+		rotate('z', -1, TH, s->map);
 	if (s->keys->up || s->keys->down || s->keys->right || s->keys->left || \
 		s->keys->add || s->keys->sub || s->keys->n1 || s->keys->n2 || \
 		s->keys->n3 || s->keys->n4 || s->keys->n5 || s->keys->n6)
