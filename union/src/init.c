@@ -15,8 +15,13 @@
 t_super		*init_super(int fd)
 {
 	t_super	*super;
-
-	if (!(super = (t_super*)malloc(sizeof(t_super))))
+	
+	if (fd < 0)
+	{
+		perror("missing file");
+		exit(0);
+	}
+		if (!(super = (t_super*)malloc(sizeof(t_super))))
 	{
 		perror("not enough space for a t_super");
 		return (NULL);

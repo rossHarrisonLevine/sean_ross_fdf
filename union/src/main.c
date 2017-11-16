@@ -18,9 +18,10 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 	{
-		write(1, "Put a map in please! :]\n", 24);
+		perror("I need a map my dude!");
 		return (0);
 	}
+
 	super = init_super(open(av[1], O_RDONLY));
 	put_to_center(super);
 	draw_map(super);
